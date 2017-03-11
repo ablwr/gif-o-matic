@@ -1,0 +1,16 @@
+{
+  "name": "gif-o-matic",
+  "version": "0.0.1",
+  "description": "PoC drag-and-drop gif creator",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "1.4.15",
+    "electron-packager": "^8.5.2"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
+  "author": "",
+  "license": "MIT"
+}

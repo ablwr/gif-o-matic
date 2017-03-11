@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>gif-o-matic</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+      require('./action')
+    </script>
+    <script>if (window.module) module = window.module;</script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>gif-o-matic</h1>
+      <div class="dropzone">
+        <div id="select-directory" class="btn btn-default">select a file</div>
+        <div id="selected-file"></div>
+      </div>
+      <div class="questions">
+        <div class="form-group">
+          <label for="starting">Where should we start the gif?</label>
+          <input class="form-control" id="starting" placeholder="HH:MM:SS">
+          <label for="length">How long should the gif be?</label>
+          <input class="form-control" id="length" placeholder="HH:MM:SS">
+        </div>
+        <div id="create_gif" class="btn btn-default">make a gif!</div><br/>
+        <small>The gif will be saved in the same directory as the video file, with the same name.</small>
+        <div class="working">
+
+        </div>
+      </div>
+      <script type="text/javascript">
+      const ipc = require('electron').ipcRenderer
+      const selectBtn = document.getElementById('select-directory')
+
+      selectBtn.addEventListener('click', function (event) {
+        ipc.send('open-file-dialog')
+      })
+      ipc.on('selected-directory', function (event, path) {
+        document.getElementById('selected-file').innerHTML = `${path}`
+      })
+      </script>
+    </div>
+  </body>
+</html>
